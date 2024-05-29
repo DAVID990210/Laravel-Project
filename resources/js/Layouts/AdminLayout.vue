@@ -21,11 +21,9 @@
         <aside
             class="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
             <div>
-                <div class="-mx-6 px-6 py-4">
-                    <a href="#" title="home">
-                        <img src="https://tailus.io/sources/blocks/stats-cards/preview/images/logo.svg" class="w-32"
-                            alt="tailus logo">
-                    </a>
+                <div class="m-8 flex justify-between items-center">
+                    <h1 class="text-2xl font-semibold text-indigo-700">{{ $page.props.auth.user.name }}</h1>
+
                 </div>
 
 
@@ -94,10 +92,12 @@
                 </Link>
             </div>
         </aside>
-        <div class="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
+        <div class="ml-auto lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
             <div class="sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5">
-                <div class="px-6 flex items-center justify-between space-x-4 2xl:container">
-                    <h5 hidden class="text-2xl text-gray-600 font-medium lg:block">Dashboard</h5>
+                <div class="px-6 flex items-center justify-center space-x-4 2xl:container">
+                    <div class="mt-2">
+                    <h1 hidden class="text-2xl text-gray-600 font-medium lg:block">User Admin Page</h1>
+                </div>
                     <button class="w-12 h-16 -mr-2 border-r lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 my-auto" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
@@ -105,8 +105,8 @@
                                 d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
-                    <div class="flex space-x-4">
-                        <!--search bar -->
+                   <!--search bar <div class="flex space-x-4">
+                         
                         <div hidden class="md:block">
                             <div class="relative flex items-center text-gray-400 focus-within:text-cyan-400">
                                 <span class="absolute left-4 h-6 flex items-center pr-3 border-r border-gray-300">
@@ -121,7 +121,7 @@
                                     class="w-full pl-14 pr-4 py-2.5 rounded-xl text-sm text-gray-600 outline-none border border-gray-300 focus:border-cyan-300 transition">
                             </div>
                         </div>
-                        <!--/search bar -->
+                        
                         <button aria-label="search"
                             class="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200 md:hidden">
                             <svg xmlns="http://ww50w3.org/2000/svg" class="w-4 mx-auto fill-current text-gray-600"
@@ -147,7 +147,7 @@
                                     d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
                             </svg>
                         </button>
-                    </div>
+                    </div>-->
                 </div>
             </div>
 
