@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateRoleRequest;
+use App\Http\Resources\PermissionResource;
 use App\Http\Resources\RoleResource;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -26,7 +27,9 @@ class RoleController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render(component: 'Admin/Roles/Create');
+        return Inertia::render('Admin/Roles/Create',[
+        'permissions' => PermissionResource::collection(Permission::all()),
+    ]);
     }
 
     /**
@@ -34,16 +37,11 @@ class RoleController extends Controller
      */
     public function store(CreateRoleRequest $request)
     {
-        Role::create($request->validated());
+        $role = Role::create(['name' => $request->name]);
+        if($request->has('permissions')) {
+            $role->syncPermissions($request->input('permissions.*.name'));
+        }
         return to_route(route: 'roles.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        
     }
 
     /**
@@ -52,9 +50,11 @@ class RoleController extends Controller
     public function edit(string $id)
     {
         $role = Role::findById($id);
+        $role->load('permissions');
 
         return Inertia::render('Admin/Roles/Edit', [
-            'role' => new RoleResource($role)
+            'role' => new RoleResource($role),
+            'permissions' => PermissionResource::collection(Permission::all()),
         ]);
     }
 
@@ -65,9 +65,13 @@ class RoleController extends Controller
     {
         $role = Role::findById($id);
 
-        $role->update($request->validated());
+        $role->update([
+            'name' => $request->name,
+        ]);
 
-        return to_route(route: 'roles.index');
+        $role->syncPermissions($request->input('permissions.*.name'));
+
+        return back();
     }
 
     /**
