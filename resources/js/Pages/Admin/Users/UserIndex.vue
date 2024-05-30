@@ -53,10 +53,11 @@
             <div class="flex justify-between">
                 <h1 class="text-2xl font-semibold text-indigo-700">Usuarios</h1>
                 <template v-if="hasPermission('Crear Usuario')">
-                <Link :href="route('users.create')"
-                    class="text-white font-semibold bg-indigo-500 hover:bg-indigo-700 px-4 py-2 rounded">Nuevo Usuario
-                </Link>
-            </template>
+                    <Link :href="route('users.create')"
+                        class="text-white font-semibold bg-indigo-500 hover:bg-indigo-700 px-4 py-2 rounded">Nuevo
+                    Usuario
+                    </Link>
+                </template>
             </div>
             <div class="mt-6 max-w mx-auto bg-slate-100 shadow-lg rounded-lg p-6">
                 <div class="bg-white rounded-lg p-1">
@@ -77,14 +78,14 @@
                                 <TableDataCell>{{ user . email }}</TableDataCell>
                                 <TableDataCell class="space-x-4">
                                     <template v-if="hasPermission('Editar Usuario')">
-                                    <Link :href="route('users.edit', user.id)"
-                                        class="text-green-500 hover:text-green-700">
-                                    Editar</Link>
-                                </template>
-                                <template v-if="hasPermission('Borrar Usuario')">
-                                    <button @click="confirmDeleteUser"
-                                        class="text-red-500 hover:text-red-700">Eliminar</button>
-                                </template>
+                                        <Link :href="route('users.edit', user.id)"
+                                            class="text-green-500 hover:text-green-700">
+                                        Editar</Link>
+                                    </template>
+                                    <template v-if="hasPermission('Borrar Usuario')">
+                                        <button @click="confirmDeleteUser"
+                                            class="text-red-500 hover:text-red-700">Eliminar</button>
+                                    </template>
                                     <Modal :show="showConfirmDeleteUserModal" @close="closeModal">
                                         <div class="p-6">
                                             <h2 class="text-lg font-semibold text-slate-800">¿Quieres borrar este
@@ -97,7 +98,7 @@
                                             </div>
                                         </div>
                                     </Modal>
-                            
+
                                 </TableDataCell>
                             </TableRow>
                         </template>
