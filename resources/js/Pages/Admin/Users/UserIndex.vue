@@ -65,8 +65,15 @@
                         <template #header>
                             <TableRow>
                                 <TableHeaderCell>ID</TableHeaderCell>
-                                <TableHeaderCell>Nombre</TableHeaderCell>
-                                <TableHeaderCell>Email</TableHeaderCell>
+                                <TableHeaderCell>Primer Nombre</TableHeaderCell>
+                                <TableHeaderCell>Segundo Nombre</TableHeaderCell>
+                                <TableHeaderCell>Tercer Nombre</TableHeaderCell>
+                                <TableHeaderCell>Primer Apellido</TableHeaderCell>
+                                <TableHeaderCell>Segundo Apellido</TableHeaderCell>
+                                <TableHeaderCell>Apellido de Casada</TableHeaderCell>
+                                <TableHeaderCell>Correo Electrónico</TableHeaderCell>
+                                <TableHeaderCell>Usuario</TableHeaderCell>
+                                <TableHeaderCell>Institución</TableHeaderCell>
                                 <TableHeaderCell>Accion</TableHeaderCell>
 
                             </TableRow>
@@ -75,7 +82,14 @@
                             <TableRow v-for="user in users" :key="user.id" class="border-b">
                                 <TableDataCell>{{ user . id }}</TableDataCell>
                                 <TableDataCell>{{ user . name }}</TableDataCell>
+                                <TableDataCell>{{ user . second_name }}</TableDataCell>
+                                <TableDataCell>{{ user . third_name }}</TableDataCell>
+                                <TableDataCell>{{ user . first_lastname }}</TableDataCell>
+                                <TableDataCell>{{ user . second_lastname }}</TableDataCell>
+                                <TableDataCell>{{ user . married_surname }}</TableDataCell>
                                 <TableDataCell>{{ user . email }}</TableDataCell>
+                                <TableDataCell>{{ user . username }}</TableDataCell>
+                                <TableDataCell>{{ user . institution?. name }}</TableDataCell>
                                 <TableDataCell class="space-x-4">
                                     <template v-if="hasPermission('Editar Usuario')">
                                         <Link :href="route('users.edit', user.id)"

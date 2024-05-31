@@ -46,14 +46,28 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'second_name' => 'required|string|max:255',
+            'third_name' => 'string|max:255',
+            'first_lastname' => 'required|string|max:255',
+            'second_lastname' => 'string|max:255',
+            'married_surname' => 'string|max:255',
+            'username' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'institution_id' => 'nullable|exists:institutions,id',
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'second_name' => $request->second_name,
+            'third_name' => $request->third_name,
+            'first_lastname' => $request->first_lastname,
+            'second_lastname' => $request->second_lastname,
+            'married_surname' => $request->married_surname,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'institution_id' => $request->institution_id,
         ]);
         $user->syncRoles($request->input('roles.*.name'));
         $user->syncPermissions($request->input('permissions.*.name'));
@@ -81,14 +95,28 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|:' . Rule::unique('users', 'email')->ignore($user),
+            'second_name' => 'required|string|max:255',
+            'third_name' => 'nullable|string|max:255',
+            'first_lastname' => 'required|string|max:255',
+            'second_lastname' => 'string|max:255',
+            'married_surname' => 'nullable|string|max:255',
+            'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'institution_id' => 'nullable|exists:institutions,id',
             'roles' => ['sometimes', 'array'],
             'permissions' => ['sometimes', 'array'],
         ]);
 
         $user->update([
             'name' => $request->name,
+            'second_name' => $request->second_name,
+            'third_name' => $request->third_name,
+            'first_lastname' => $request->first_lastname,
+            'second_lastname' => $request->second_lastname,
+            'married_surname' => $request->married_surname,
+            'username' => $request->username,
             'email' => $request->email,
+            'institution_id' => $request->institution_id,
         ]);
 
         $user->syncRoles($request->input('roles.*.name'));
@@ -103,6 +131,6 @@ class UserController extends Controller
     public function destroy(User $user): RedirectResponse
     {
         $user->delete();
-            return to_route(route: 'users.index');
+        return to_route(route: 'users.index');
     }
 }

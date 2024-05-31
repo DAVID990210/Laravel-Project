@@ -17,6 +17,13 @@ class UserResource extends JsonResource
        return [
            'id' => $this->id,
            'name' => $this->name,
+           'second_name' => $this->second_name,
+           'third_name' => $this->third_name,
+           'first_lastname' => $this->first_lastname,
+           'second_lastname' => $this->second_lastname,
+           'married_surname' => $this->married_surname,
+           'username' => $this->username,
+           'institution_id' => $this->institution_id,
            'email' => $this->email,
            'roles' => RoleResource::collection($this->whenloaded('roles')),
            'permissions' => PermissionResource::collection($this->whenloaded('permissions')),
