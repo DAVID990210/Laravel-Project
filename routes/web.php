@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RemoveRoleFromUserController;
 use App\Http\Controllers\RevokePermissionFromRoleController;
@@ -32,28 +33,32 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::middleware(['auth', 'role:admin'])
-    ->prefix('/admin')
+Route::middleware(['auth', 'role:admin', 'check.institution:1'])->
+    prefix('/admin')
     ->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin.index');
         Route::resource('/users', UserController::class);
         Route::resource('/roles', RoleController::class);
         Route::resource('/permissions', PermissionController::class);
+        Route::resource('/institutions', InstitutionController::class);
         Route::delete('/roles/{role}/permissions/{permission}', RevokePermissionFromRoleController::class)->name('roles.permissions.destroy');
-        Route::delete('/usera/{user}/permissions/{permission}', RevokePermissionFromUserController::class)->name('users.permissions.destroy');
+        Route::delete('/users/{user}/permissions/{permission}', RevokePermissionFromUserController::class)->name('users.permissions.destroy');
         Route::delete('/users/{user}/roles/{role}', RemoveRoleFromUserController::class)->name('users.roles.destroy');
-
-        Route::resource('/users', UserController::class);
-        Route::resource('/roles', RoleController::class);
-        Route::resource('/permissions', PermissionController::class);
-        Route::delete('/roles/{role}/permissions/{permission}', RevokePermissionFromRoleController::class)->name('roles.permissions.destroy');
-        Route::delete('/usera/{user}/permissions/{permission}', RevokePermissionFromUserController::class)->name('users.permissions.destroy');
-        Route::delete('/users/{user}/roles/{role}', RemoveRoleFromUserController::class)->name('users.roles.destroy');
+        
     });
 
-Route::middleware(['auth', 'institution'])->group(function () {
-    Route::resource('/users', UserController::class);
-    // Otras rutas protegidas
-});
+Route::middleware(['auth', 'role:admin', 'check.institution:2'])->
+    prefix('/admin2')
+    ->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('admin.index.institution2');
+       
+        Route::resource('/roles', RoleController::class);
+    
+        
+    });
+
+    
+ 
+    
 
 require __DIR__ . '/auth.php';

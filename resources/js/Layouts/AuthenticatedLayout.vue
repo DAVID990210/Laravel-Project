@@ -7,7 +7,9 @@ import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
 import { usePermission} from '@/composables/permissions';
+import { useInstitutionRoutes } from '@/composables/useInstitutionRoutes';
 
+const {route} = useInstitutionRoutes();
 
 const showingNavigationDropdown = ref(false);
 const { hasRole } = usePermission();

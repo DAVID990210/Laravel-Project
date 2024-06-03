@@ -1,6 +1,6 @@
 <script setup>
     import {
-        ref
+        ref,
     } from 'vue';
     import ApplicationLogo from '@/Components/ApplicationLogo.vue';
     import Dropdown from '@/Components/Dropdown.vue';
@@ -8,11 +8,14 @@
     import NavLink from '@/Components/NavLink.vue';
     import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
     import {
-        Link
+        Link,
     } from '@inertiajs/vue3';
     import SidebarLink from '@/Components/SidebarLink.vue';
+    import { useInstitutionRoutes } from '@/composables/useInstitutionRoutes';
 
+    const {route} = useInstitutionRoutes();
     const showingNavigationDropdown = ref(false);
+
 </script>
 
 <template>
@@ -22,11 +25,9 @@
             class="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
             <div>
                 <div class="m-8 flex justify-between items-center">
-                    <h1 class="text-2xl font-semibold text-indigo-700">{{ $page.props.auth.user.name }}</h1>
+                    <h1 class="text-2xl font-semibold text-indigo-700">{{ $page . props . auth . user . name }}</h1>
 
                 </div>
-
-
 
                 <ul class="space-y-2 tracking-wide mt-8">
                     <li>
@@ -66,7 +67,8 @@
                         </SidebarLink>
                     </li>
                     <li>
-                        <SidebarLink :href="route('permissions.index')" :active="route().current('permissions.index')">
+                        <SidebarLink :href="route('permissions.index')"
+                            :active="route().current('permissions.index')">
 
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -75,6 +77,19 @@
                             </svg>
 
                             <span class="-mr-1 font-medium">Permissons</span>
+                        </SidebarLink>
+                    </li>
+                    <li>
+                        <SidebarLink :href="route('institutions.index')"
+                            :active="route().current('institutions.index')">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M10.05 4.575a1.575 1.575 0 1 0-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 0 1 3.15 0v1.5m-3.15 0 .075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 0 1 3.15 0V15M6.9 7.575a1.575 1.575 0 1 0-3.15 0v8.175a6.75 6.75 0 0 0 6.75 6.75h2.018a5.25 5.25 0 0 0 3.712-1.538l1.732-1.732a5.25 5.25 0 0 0 1.538-3.712l.003-2.024a.668.668 0 0 1 .198-.471 1.575 1.575 0 1 0-2.228-2.228 3.818 3.818 0 0 0-1.12 2.687M6.9 7.575V12m6.27 4.318A4.49 4.49 0 0 1 16.35 15m.002 0h-.002" />
+                            </svg>
+
+                            <span class="-mr-1 font-medium">Instituciones</span>
                         </SidebarLink>
                     </li>
                 </ul>
@@ -96,8 +111,8 @@
             <div class="sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5">
                 <div class="px-6 flex items-center justify-center space-x-4 2xl:container">
                     <div class="mt-2">
-                    <h1 hidden class="text-2xl text-gray-600 font-medium lg:block">User Admin Page</h1>
-                </div>
+                        <h1 hidden class="text-2xl text-gray-600 font-medium lg:block">User Admin Page</h1>
+                    </div>
                     <button class="w-12 h-16 -mr-2 border-r lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 my-auto" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
@@ -105,7 +120,7 @@
                                 d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
-                   <!--search bar <div class="flex space-x-4">
+                    <!--search bar <div class="flex space-x-4">
                          
                         <div hidden class="md:block">
                             <div class="relative flex items-center text-gray-400 focus-within:text-cyan-400">
