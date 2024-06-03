@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateInstitutionRequest;
+use App\Http\Requests\CreateRoleRequest;
 use App\Http\Resources\InstitutionResource;
 use App\Http\Resources\RoleResource;
 use App\Models\Institution;
@@ -33,18 +35,16 @@ class InstitutionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateInstitutionRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'code' => 'required|string|max:255|unique:institutions',
-            'address' => 'required|string|max:255',
-        ]);
         $institution = Institution::create([
             'name' => $request->name,
             'code' => $request->code,
             'address' => $request->address,
         ]);
+        if($request->has('roles')) {
+            $institution->syncRoles($request->input('roles.*.name'));
+        }
         return to_route('institutions.index')->with('success', 'Institución creada Exitosamente');
     }
 
@@ -53,20 +53,21 @@ class InstitutionController extends Controller
      */
     public function edit(Institution $institution): Response
     {
+        $institution = Institution::findOrFail($institution->id);
+        $institution->load('roles');
+
         return Inertia::render('Admin/Institutions/Edit', [
             'institution' => new InstitutionResource($institution),
+            'roles' => RoleResource::collection(Role::all()),
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Institution $institution): RedirectResponse
+    public function update(CreateRoleRequest $request, string $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-        ]);
+        $institution = Institution::findOrFail($id);
 
         $institution->update([
             'name' => $request->name,
@@ -78,8 +79,9 @@ class InstitutionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Institution $institution): RedirectResponse
+    public function destroy(string $id)
     {
+        $institution = Institution::findOrFail($id);
         $institution->delete();
         return to_route('institutions.index');
     }
