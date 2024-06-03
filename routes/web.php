@@ -47,16 +47,6 @@ Route::middleware(['auth', 'role:admin', 'check.institution:1'])->
         
     });
 
-Route::middleware(['auth', 'role:admin', 'check.institution:2'])->
-    prefix('/admin2')
-    ->group(function () {
-        Route::get('/', [AdminController::class, 'index'])->name('admin.index.institution2');
-       
-        Route::resource('/roles', RoleController::class);
-    
-        
-    });
-
     
  
     

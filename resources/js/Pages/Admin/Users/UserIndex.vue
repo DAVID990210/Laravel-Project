@@ -67,10 +67,8 @@
                                 <TableHeaderCell>ID</TableHeaderCell>
                                 <TableHeaderCell>Primer Nombre</TableHeaderCell>
                                 <TableHeaderCell>Segundo Nombre</TableHeaderCell>
-                                <TableHeaderCell>Tercer Nombre</TableHeaderCell>
                                 <TableHeaderCell>Primer Apellido</TableHeaderCell>
                                 <TableHeaderCell>Segundo Apellido</TableHeaderCell>
-                                <TableHeaderCell>Apellido de Casada</TableHeaderCell>
                                 <TableHeaderCell>Correo Electrónico</TableHeaderCell>
                                 <TableHeaderCell>Usuario</TableHeaderCell>
                                 <TableHeaderCell>Institución</TableHeaderCell>
@@ -83,25 +81,23 @@
                                 <TableDataCell>{{ user . id }}</TableDataCell>
                                 <TableDataCell>{{ user . name }}</TableDataCell>
                                 <TableDataCell>{{ user . second_name }}</TableDataCell>
-                                <TableDataCell>{{ user . third_name }}</TableDataCell>
                                 <TableDataCell>{{ user . first_lastname }}</TableDataCell>
                                 <TableDataCell>{{ user . second_lastname }}</TableDataCell>
-                                <TableDataCell>{{ user . married_surname }}</TableDataCell>
                                 <TableDataCell>{{ user . email }}</TableDataCell>
                                 <TableDataCell>{{ user . username }}</TableDataCell>
-                                <TableDataCell>{{ user . institution?. name }}</TableDataCell>
+                                <TableDataCell>{{ user . institution_id }}</TableDataCell>
                                 <TableDataCell class="space-x-4">
                                     <div>
-                                    <template v-if="hasPermission('Editar Usuario')">
-                                        <Link :href="route('users.edit', user.id)"
-                                            class="text-green-500 hover:text-green-700">
-                                        Editar</Link>
-                                    </template>
-                                    <template v-if="hasPermission('Borrar Usuario')">
-                                        <button @click="confirmDeleteUser"
-                                            class="text-red-500 hover:text-red-700">Eliminar</button>
-                                    </template>
-                                </div>
+                                        <template v-if="hasPermission('Editar Usuario')">
+                                            <Link :href="route('users.edit', user.id)"
+                                                class="text-green-500 hover:text-green-700">
+                                            Editar</Link>
+                                        </template>
+                                        <template v-if="hasPermission('Borrar Usuario')">
+                                            <button @click="confirmDeleteUser"
+                                                class="text-red-500 hover:text-red-700">Eliminar</button>
+                                        </template>
+                                    </div>
                                     <Modal :show="showConfirmDeleteUserModal" @close="closeModal">
                                         <div class="p-6">
                                             <h2 class="text-lg font-semibold text-slate-800">¿Quieres borrar este

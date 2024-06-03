@@ -67,7 +67,7 @@
                         <InputLabel for="second_name" value="Segundo Nombre" />
 
                         <TextInput id="second_name" type="text" class="mt-1 block w-full" v-model="form.second_name"
-                            required autofocus autocomplete="second_name" />
+                            required autocomplete="second_name" />
 
                         <InputError class="mt-2" :message="form.errors.second_name" />
                     </div>
@@ -75,7 +75,7 @@
                         <InputLabel for="third_name" value="Tercer Nombre" />
 
                         <TextInput id="third_name" type="text" class="mt-1 block w-full" v-model="form.third_name"
-                            autofocus autocomplete="third_name" />
+                            autocomplete="third_name" />
 
                         <InputError class="mt-2" :message="form.errors.third_name" />
                     </div>
@@ -85,7 +85,7 @@
                         <InputLabel for="first_lastname" value="Primer Apellido" />
 
                         <TextInput id="first_lastname" type="text" class="mt-1 block w-full"
-                            v-model="form.first_lastname" required autofocus autocomplete="first_lastname" />
+                            v-model="form.first_lastname" required autocomplete="first_lastname" />
 
                         <InputError class="mt-2" :message="form.errors.first_lastname" />
                     </div>
@@ -93,7 +93,7 @@
                         <InputLabel for="second_lastname" value="Segundo Apellido" />
 
                         <TextInput id="second_lastname" type="text" class="mt-1 block w-full"
-                            v-model="form.second_lastname" required autofocus autocomplete="second_lastname" />
+                            v-model="form.second_lastname" required autocomplete="second_lastname" />
 
                         <InputError class="mt-2" :message="form.errors.second_lastname" />
                     </div>
@@ -101,7 +101,7 @@
                         <InputLabel for="married_surname" value="Apellido de Casada" />
 
                         <TextInput id="married_surname" type="text" class="mt-1 block w-full"
-                            v-model="form.married_surname" autofocus autocomplete="married_surname" />
+                            v-model="form.married_surname" autocomplete="married_surname" />
 
                         <InputError class="mt-2" :message="form.errors.married_surname" />
                     </div>
@@ -111,7 +111,7 @@
                         <InputLabel for="username" value="Usuario" />
 
                         <TextInput id="username" type="text" class="mt-1 block w-full" v-model="form.username"
-                            required autofocus autocomplete="username" />
+                            required autocomplete="username" />
 
                         <InputError class="mt-2" :message="form.errors.username" />
                     </div>
