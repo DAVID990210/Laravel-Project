@@ -34,6 +34,7 @@
         married_surname: props.user?.married_surname || 'N/A',
         username: props.user?.username,
         email: props.user?.email,
+        dpi: props.user?.dpi,
         roles: [],
         permissions: []
     });
@@ -122,13 +123,23 @@
                         <InputError class="mt-2" :message="form.errors.married_surname" />
                     </div>
                 </div>
-                <div class="mt-4">
-                    <InputLabel for="username" value="Usuario" />
+                <div class="flex justify-between mt-4">
+                    <div class="mx-1 w-full">
+                        <InputLabel for="username" value="Usuario" />
 
-                    <TextInput id="username" type="text" class="mt-1 block w-full" v-model="form.username" required
-                        autocomplete="username" />
+                        <TextInput id="username" type="text" class="mt-1 block w-full" v-model="form.username"
+                            required autocomplete="username" />
 
-                    <InputError class="mt-2" :message="form.errors.username" />
+                        <InputError class="mt-2" :message="form.errors.username" />
+                    </div>
+                    <div class="mx-1 w-full">
+                        <InputLabel for="dpi" value="DPI" />
+
+                        <TextInput id="dpi" type="text" class="mt-1 block w-full" v-model="form.dpi" required
+                            autocomplete="dpi" />
+
+                        <InputError class="mt-2" :message="form.errors.dpi" />
+                    </div>
                 </div>
 
                 <div class="mt-4">
@@ -157,7 +168,7 @@
             </form>
         </div>
 
-         </AdminLayout>
+    </AdminLayout>
 </template>
 
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>

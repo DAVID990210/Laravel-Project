@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('first_lastname');
             $table->string('second_lastname')->nullable();
             $table->string('married_surname')->nullable();
-            $table->foreignId('institution_id')->nullable()->constrained('institutions'); // Relación con instituciones
+            $table->bigInteger('dpi');
+            $table->integer('status')->default(1);
+            $table->string('deleted_by')->nullable();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 
@@ -34,8 +37,10 @@ return new class extends Migration
             $table->dropColumn('first_lastname');
             $table->dropColumn('second_lastname');
             $table->dropColumn('married_surname');
-            $table->dropForeign(['institution_id']);
-            $table->dropColumn('institution_id');
+            $table->dropColumn('dpi');
+            $table->dropColumn('status');
+            $table->dropColumn('deleted_by');
+            $table->dropColumn('deleted_at');
         });
     }
 };

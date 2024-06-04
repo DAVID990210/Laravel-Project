@@ -71,7 +71,8 @@
                                 <TableHeaderCell>Segundo Apellido</TableHeaderCell>
                                 <TableHeaderCell>Correo Electrónico</TableHeaderCell>
                                 <TableHeaderCell>Usuario</TableHeaderCell>
-                                <TableHeaderCell>Institución</TableHeaderCell>
+                                <TableHeaderCell>DPI</TableHeaderCell>
+                                <TableHeaderCell>Status</TableHeaderCell>
                                 <TableHeaderCell>Accion</TableHeaderCell>
 
                             </TableRow>
@@ -85,7 +86,8 @@
                                 <TableDataCell>{{ user . second_lastname }}</TableDataCell>
                                 <TableDataCell>{{ user . email }}</TableDataCell>
                                 <TableDataCell>{{ user . username }}</TableDataCell>
-                                <TableDataCell>{{ user . institution_id }}</TableDataCell>
+                                <TableDataCell>{{ user . dpi }}</TableDataCell>
+                                <TableDataCell>{{ user . status }}</TableDataCell>
                                 <TableDataCell class="space-x-4">
                                     <div>
                                         <template v-if="hasPermission('Editar Usuario')">

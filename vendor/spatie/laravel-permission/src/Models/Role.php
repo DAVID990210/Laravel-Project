@@ -192,8 +192,4 @@ class Role extends Model implements RoleContract
         return $this->permissions->contains($permission->getKeyName(), $permission->getKey());
     }
 
-    public function institution()
-    {
-        return $this->belongsToMany(Institution::class, 'institution_roles');
-    }
 }

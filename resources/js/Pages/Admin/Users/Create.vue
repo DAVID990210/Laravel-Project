@@ -25,7 +25,7 @@
         married_surname: '' || 'N/A',
         email: '',
         username: '',
-        institution_id: '',
+        dpi: '',
         password: '',
         password_confirmation: '',
         roles: [],
@@ -114,6 +114,14 @@
                             required autocomplete="username" />
 
                         <InputError class="mt-2" :message="form.errors.username" />
+                    </div>
+                    <div class="mx-1 w-full">
+                        <InputLabel for="dpi" value="DPI" />
+
+                        <TextInput id="dpi" type="text" class="mt-1 block w-full" v-model="form.dpi"
+                            required autocomplete="dpi" />
+
+                        <InputError class="mt-2" :message="form.errors.dpi" />
                     </div>
 
                     <div class="mx-1 w-full">

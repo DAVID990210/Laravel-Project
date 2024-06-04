@@ -33,8 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::middleware(['auth', 'role:admin', 'check.institution:1'])->
-    prefix('/admin')
+Route::middleware(['auth', 'role:admin']) //'check.institution:1'])->
+    ->prefix('/admin')
     ->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin.index');
         Route::resource('/users', UserController::class);

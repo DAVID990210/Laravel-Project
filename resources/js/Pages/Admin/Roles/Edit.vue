@@ -5,7 +5,6 @@
         useForm
     } from '@inertiajs/vue3';
     import AdminLayout from '@/Layouts/AdminLayout.vue';
-
     import PrimaryButton from '@/Components/PrimaryButton.vue';
     import InputLabel from '@/Components/InputLabel.vue';
     import InputError from '@/Components/InputError.vue';
@@ -38,10 +37,11 @@
     })
 
     watch(
-        () => props.role, 
-        () => {form.permissions = props.role?.permissions;}
+        () => props.role,
+        () => {
+            form.permissions = props.role?.permissions;
+        }
     )
-
 </script>
 
 <template>
@@ -72,15 +72,15 @@
                     <div class="mt-4">
                         <InputLabel for="permissions" value="Permisos" />
                         <VueMultiselect v-model="form.permissions" :options="permissions" :multiple="true"
-                            :close-on-select="true" placeholder="Selecciona los permisos" label="name" track-by="id" />
+                            :close-on-select="true" placeholder="Selecciona los permisos" label="name"
+                            track-by="id" />
 
                     </div>
 
                     <div class="flex items-center mt-4">
 
-                        <PrimaryButton :class="{ 'opacity-25': form.processing }"
-                            :disabled="form.processing">
-                            Editar
+                        <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                            CONFIRMAR
                         </PrimaryButton>
                     </div>
                 </form>
@@ -102,8 +102,9 @@
                                 <TableDataCell>{{ rolePermission . id }}</TableDataCell>
                                 <TableDataCell>{{ rolePermission . name }}</TableDataCell>
                                 <TableDataCell class="space-x-4">
-                                    <Link :href="route('roles.permissions.destroy', [role.id,rolePermission.id])" method="delete"
-                                        as="button" class="text-red-400 hover:text-red-600">Remover</Link>
+                                    <Link :href="route('roles.permissions.destroy', [role.id, rolePermission.id])"
+                                        method="delete" as="button" class="text-red-400 hover:text-red-600">Remover
+                                    </Link>
                                 </TableDataCell>
                             </TableRow>
                         </template>

@@ -26,6 +26,7 @@ class User extends Authenticatable
         'second_lastname',
         'married_surname',
         'email',
+        'dpi',
         'password',
         'institution_id',
     ];

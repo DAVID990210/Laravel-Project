@@ -23,8 +23,8 @@ class CreateInstitutionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255', Rule::unique(table: 'institutions', column: 'name')->ignore($this->institution)],
-            'roles' => ['sometimes', 'array'],
+            'name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
         ];
     }
 }
